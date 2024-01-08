@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  api:
+    build:
+      context: ./src/api/
+      dockerfile: DockerfileApi
+    ports:
+      - "8000:80"
+    volumes:
+      - ./src/api:/usr/src/app
+
+  streamlit:
+    build:
+      context: ./src/app-streamlit/
+      dockerfile: DockerfileStreamlit
+    depends_on:
+      - api
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./src/app-streamlit:/usr/src/app
