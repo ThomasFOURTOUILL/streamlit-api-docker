@@ -4,19 +4,27 @@ services:
   api:
     build:
       context: ./src/api/
-      dockerfile: DockerfileApi
+      dockerfile: Dockerfile.api
     ports:
-      - "8000:80"
+      - "8000:8000"
     volumes:
       - ./src/api:/usr/src/app
+    networks:
+      - mynetwork
 
   streamlit:
     build:
       context: ./src/app-streamlit/
-      dockerfile: DockerfileStreamlit
+      dockerfile: Dockerfile.streamlit
     depends_on:
       - api
     ports:
       - "8501:8501"
     volumes:
       - ./src/app-streamlit:/usr/src/app
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
