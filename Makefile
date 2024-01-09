@@ -17,4 +17,4 @@ curl:
 
 empty:
 	docker build -t empty -f Dockerfile.noobject .
-	docker run -it --name mon_conteneur empty
+	docker run -it empty:latest
