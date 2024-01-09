@@ -1,4 +1,4 @@
-.PHONY: del-images
+.PHONY: clean
 
 install: 
 	pip install -r requirements.txt
